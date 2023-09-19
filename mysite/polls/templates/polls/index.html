@@ -1,0 +1,7 @@
+{% if que %}
+    {% for question in que %}
+        <li> <a href="{% url 'polls:choices' question.id %}"> {{ question.question_text }} </a></li>
+    {% endfor %}
+{% else %}
+    <h5> Question not there </h5>
+{% endif %}

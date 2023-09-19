@@ -1,0 +1,36 @@
+<!--"my_list": ['praveen', 'kumar', ('python', 'django', 'sql'), 'bangalore'],-->
+<!--        "name": 'HCL India pvt. ltd',-->
+<!--        "my_dict":{-->
+<!--            "status": 'active',-->
+<!--            'fname': 'praveen',-->
+<!--            'lname': 'kumar',-->
+<!--            'location': 'bangalore',-->
+<!--            'skills': ['python', 'django', 'sql'],-->
+<!--        },-->
+<!--        'salary': (100000, 120000, 150000, 160000, 145000)-->
+
+{% if mydata %}
+    <h4>Access a dict values form keys</h4>
+    <li>{{ mydata.my_list }}</li>
+    <li>{{ mydata.name }}</li>
+    <li>{{ mydata.my_dict.skills }}</li>
+    <li>{{ mydata.salary }}</li>
+
+    <h4>Accessing dict without keys with loop and .items()</h4>
+    {% for key, value in mydata.items %}
+        <li>{{key}}: {{value}}</li>
+    {% endfor %}
+
+    <h4>Salary Info</h4>
+    {% for salary in mydata.salary %}
+        {% if salary >= 145000 %}
+            <p>{{forloop.counter}}.{{salary}}: Good for this month, we can save: 20k in this month</p>
+        {% elif salary >= 135000 %}
+            <p>{{forloop.counter}}.{{salary}}: Good for this month</p>
+        {% else %}
+            <p>{{forloop.counter}}.{{salary}}: Bad for this month, we need for borrow 20k in this month</p>
+        {% endif %}
+    {% endfor %}
+{% else %}
+<h3>Data not there</h3>
+{% endif %}
